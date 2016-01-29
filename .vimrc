@@ -18,6 +18,10 @@ Plug 'Valloric/YouCompleteMe'
 
 Plug 'SirVer/ultisnips'
 
+Plug 'kergoth/vim-bitbake'
+
+Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 
@@ -29,7 +33,7 @@ set shiftwidth=4
 set autoindent
 set smartindent
 set expandtab
-set guifont=DejaVu\ Sans\ Mono\ 10
+set guifont=DejaVu\ Sans\ Mono\ 8
 set clipboard=unnamed
 colo murphy
 syn on
@@ -67,6 +71,22 @@ let g:indent_guides_guide_size=1
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_color_change_percent=50
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{','}']]
+
+let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_root_markers = ['.git']
+
+" The Silver Searcher
+if executable('ag')
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+endif
+
 
 " Activation based on file type
 augroup rainbow_lisp
@@ -129,7 +149,7 @@ function FileCommStarStyle()
 /**
  * \file <file name>
  *
- * Copyright (C) MPC Data Limited 2012, All rights reserved.
+ * Copyright (C) Bsquare EMEA Limited 2016, All rights reserved.
  *
  * $Id$
  *
@@ -172,7 +192,7 @@ function FileCommNoStarStyle()
 /**
 @file <filename>
 
-Copyright (C) MPC Data Limited 2012, All rights reserved.
+Copyright (C) Bsquare EMEA Limited 2016, All rights reserved.
 
 $Id$
 
